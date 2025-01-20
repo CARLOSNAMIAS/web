@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenidos</title>
+    <link rel="icon" type="image/x-icon" href="./img/image.png">
+</head>
+
+<style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000000; /* Color de fondo opcional */
+        }
+        .center-div {
+            text-align: center;
+        }
+        .center-div img {
+        max-width: 70%;
+        height: auto;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .center-div img:hover {
+        transform: scale(1.1); /* Aumenta el tamaño al pasar el mouse */
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); /* Agrega una sombra */
+        box-shadow: 0px 0px 20px 10px rgba(11, 177, 11, 0.902); /* Luz amarilla */
+    }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #079710; /* Color del botón */
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px; /* Esquinas redondeadas */
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color:#df0202; /* Color al pasar el cursor */
+        }
+    </style>
+</head>
+<body>
+    <div class="center-div">
+        <a href="gt.html" title="Ir a la Página Principal">
+            <img src="./img/logo-cocina.png" alt="Imagen Página Principal">
+        </a>
+        <br>
+        <a href="gt.html" class="button">Ir a Gestión de Comandas</a>
+    </div>
+</body>
+</html>
