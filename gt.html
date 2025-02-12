@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Comandas</title>
+  <link rel="icon" type="image/x-icon" href="./img/image.png">
+</head>
+
+<style>
+  /* General Styles */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #333;
+  }
+
+  header {
+    background-color: #1b1b1b;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  h1,
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+
+  form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  form select,
+  form input,
+  form button {
+    width: 40%;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #9d9090;
+    border-radius: 5px;
+  }
+
+  form button {
+    width: auto;
+    margin-top: 10px;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+  }
+
+  form button:hover {
+    background-color: #00d60b;
+  }
+
+  table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  table th,
+  table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+
+  table th {
+    background-color: #1b1b1b;
+    color: rgb(244, 244, 244);
+  }
+
+  table caption {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  #total {
+    font-weight: bold;
+    color: #000000;
+    /* Color destacado */
+  }
+
+  button {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+
+  #print-button {
+    background-color: #000000;
+    /* Verde */
+    color: white;
+  }
+
+  #print-button:hover {
+    background-color: #00d60b;
+    transform: scale(1.05);
+  }
+
+  #reset-button {
+    background-color: #ff1e1e;
+    /* Rojo */
+    color: white;
+  }
+
+  #reset-button:hover {
+    background-color: #fe0000;
+    transform: scale(1.05);
+  }
+
+  footer {
+    text-align: center;
+    /* Centrar contenido */
+    padding: 20px 10px;
+    /* Espaciado interno */
+    font-size: 10px;
+    /* Tamaño del texto */
+    background-color: #c0bdbdb6;
+  }
+
+
+  .container {
+    display: flex;
+    /* Activa el diseño flexbox */
+    align-items: flex-start;
+    /* Alinea los elementos en la parte superior */
+    gap: 40px;
+    /* Espacio entre el formulario y la imagen */
+    width: 98%;
+    /* Ocupa el 80% del ancho de la página */
+    max-width: 1200px;
+    /* Ancho máximo opcional */
+    margin: 0 auto;
+    /* Centra el contenedor en la página */
+  }
+
+
+  .form-container {
+    flex: 1;
+    /* El formulario ocupa el espacio necesario */
+  }
+
+  .image-container {
+    flex-shrink: 0;
+    /* La imagen no se reduce si hay poco espacio */
+  }
+
+  .image-container img {
+    max-width: 260px;
+    /* Tamaño máximo de la imagen */
+    height: auto;
+    /* Mantén las proporciones */
+
+    border-radius: 5px;
+    /* Bordes redondeados */
+    margin-top: 20px;
+
+  }
+</style>
+
+<body>
+  <header>
+    <h1>Gestión de Comandas</h1>
+  </header>
+
+  <div class="container">
+    <!-- Contenedor del formulario -->
+    <div class="form-container">
+      <form id="order-form">
+        <label for="restaurant">Restaurante:</label>
+        <select id="restaurant" required>
+          <option value="">Seleccionar restaurante</option>
+          <option value="Gari Sushi">Gari Sushi</option>
+          <option value="My Sushi wok">My Sushi wok</option>
+          <option value="My Sushi">My Sushi</option>
+          <option value="Barco">Barco</option>
+          <option value="Gari food">Gari food</option>
+        </select>
+
+        <label for="dish">Plato:</label>
+        <select id="dish" required>
+          <option value="">Seleccionar plato</option>
+        </select>
+
+        <label for="price">Precio:</label>
+        <input type="text" id="price" readonly>
+
+
+        <!-- Botones para aplicar descuento -->
+        <label>Aplicar descuento:</label>
+        <div>
+          <button type="button" onclick="applyDiscount(10)">10%</button>
+          <button type="button" onclick="applyDiscount(20)">20%</button>
+          <button type="button" onclick="applyDiscount(50)">50%</button>
+        </div>
+        <button type="submit">Agregar</button>
+      </form>
+    </div>
+
+
+    <!-- Contenedor de la imagen -->
+    <div class="image-container">
+      <a href="index.html" title="Ir a la Página Principal">
+        <img src="./img/logo-cocina.png" alt="Imagen de referencia" />
+      </a>
+    </div>
+
+  </div>
+
+  <table id="order-table" border="1">
+    <caption>Registro</caption>
+    <thead>
+      <tr>
+        <th>Número</th>
+        <th>Plato</th>
+        <th>Restaurante</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <p><strong>Total:</strong> $<span id="total">0.00</span></p>
+  <button id="print-button">Imprimir Comandas</button>
+
+  <button id="reset-button">Reiniciar Comandas</button>
+
+  <script>
+    const restaurants = {
+      "Gari Sushi": [{ dish: "Sushi Roll", price: 15.99 }, { dish: "Sashimi", price: 20.99 }],
+      "My Sushi": [{ dish: "Tempura", price: 12.99 }, { dish: "Miso Soup", price: 6.99 }],
+      "Barco": [{ dish: "Tacos", price: 10.99 }, { dish: "Burrito", price: 8.99 }],
+      "My Sushi wok": [{ dish: "Sushi fito", price: 17.09 }, { dish: "Simi", price: 26.99 }],
+    };
+
+    const orderForm = document.getElementById('order-form');
+    const restaurantSelect = document.getElementById('restaurant');
+    const dishSelect = document.getElementById('dish');
+    const priceInput = document.getElementById('price');
+    const tableBody = document.querySelector('#order-table tbody');
+    const totalElement = document.getElementById('total');
+    const printButton = document.getElementById('print-button');
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    let orderCounter = orders.length > 0 ? Math.max(...orders.map(o => o.orderNumber)) + 1 : 1;
+
+    // Función para aplicar descuento
+    function applyDiscount(percentage) {
+      const price = parseFloat(priceInput.value);
+      if (isNaN(price) || price <= 0) {
+        alert('Por favor, selecciona un plato con precio válido antes de aplicar el descuento.');
+        return;
+      }
+      const discountedPrice = price - (price * percentage / 100);
+      priceInput.value = discountedPrice.toFixed(2);
+    }
+
+    // Cargar órdenes iniciales
+    orders.forEach(addOrderToTable);
+    updateTotal();
+
+    // Actualizar platos según el restaurante seleccionado
+    restaurantSelect.addEventListener('change', function () {
+      const selectedRestaurant = this.value;
+      dishSelect.innerHTML = '<option value="">Seleccionar plato</option>';
+      priceInput.value = '';
+      if (selectedRestaurant && restaurants[selectedRestaurant]) {
+        restaurants[selectedRestaurant].forEach(item => {
+          const option = document.createElement('option');
+          option.value = item.dish;
+          option.textContent = item.dish;
+          option.dataset.price = item.price;
+          dishSelect.appendChild(option);
+        });
+      }
+    });
+
+    // Mostrar precio del plato seleccionado
+    dishSelect.addEventListener('change', function () {
+      const selectedOption = this.options[this.selectedIndex];
+      priceInput.value = selectedOption.dataset.price || '';
+    });
+
+    // Agregar orden al array y a la tabla
+    orderForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const dish = dishSelect.value;
+      const restaurant = restaurantSelect.value;
+      const price = parseFloat(priceInput.value);
+
+      if (dish && restaurant && price) {
+        const order = {
+          orderNumber: orderCounter++,
+          dish,
+          restaurant,
+          price
+        };
+        orders.push(order);
+        localStorage.setItem('orders', JSON.stringify(orders));
+        addOrderToTable(order);
+        updateTotal();
+        orderForm.reset();
+      }
+    });
+
+    // Agregar fila a la tabla
+    function addOrderToTable(order) {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+                <td>${order.orderNumber}</td>
+                <td>${order.dish}</td>
+                <td>${order.restaurant}</td>
+                <td>$${order.price.toFixed(2)}</td>
+                <td class="actions">
+                    <button onclick="removeOrder(this)">Eliminar</button>
+                </td>
+            `;
+      tableBody.appendChild(row);
+    }
+
+    // Actualizar total
+    function updateTotal() {
+      const total = orders.reduce((sum, order) => sum + order.price, 0);
+      totalElement.textContent = total.toFixed(2);
+    }
+
+    // Eliminar orden
+    window.removeOrder = function (button) {
+      const row = button.parentElement.parentElement;
+      const index = Array.from(tableBody.children).indexOf(row);
+      orders.splice(index, 1);
+      localStorage.setItem('orders', JSON.stringify(orders));
+      row.remove();
+      updateTotal();
+    };
+
+    // Imprimir comandas
+    printButton.addEventListener('click', function () {
+      const printWindow = window.open('', '', 'width=800,height=600');
+
+      // Obtener la fecha y hora actual
+      const now = new Date();
+      const formattedDate = now.toLocaleDateString();
+      const formattedTime = now.toLocaleTimeString();
+
+      let content = `<h1>Comandas</h1>`;
+      content += `<p><strong>Fecha:</strong> ${formattedDate}</p>`;
+      content += `<p><strong>Hora:</strong> ${formattedTime}</p>`;
+      content += `<table border="1" style="width: 100%; text-align: center; border-collapse: collapse;">`;
+      content += `
+                        <thead>
+                            <tr>
+                                <th>Número</th>
+                                <th>Plato</th>
+                                <th>Restaurante</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                    `;
+      orders.forEach(order => {
+        content += `
+                            <tr>
+                                <td>${order.orderNumber}</td>
+                                <td>${order.dish}</td>
+                                <td>${order.restaurant}</td>
+                                <td>$${order.price.toFixed(2)}</td>
+                            </tr>
+                        `;
+      });
+      content += `</tbody></table>`;
+      content += `<p><strong>Total:</strong> $${orders.reduce((sum, order) => sum + order.price, 0).toFixed(2)}</p>`;
+      printWindow.document.write(content);
+      printWindow.document.close();
+      printWindow.print();
+    });
+
+
+    // Botón para reiniciar comandas
+    const resetButton = document.getElementById('reset-button');
+
+    resetButton.addEventListener('click', function () {
+      if (confirm('¿Estás seguro de que quieres reiniciar todas las comandas?')) {
+        orders = []; // Reiniciar array de órdenes
+        localStorage.removeItem('orders'); // Eliminar datos del localStorage
+        tableBody.innerHTML = ''; // Limpiar tabla
+        updateTotal(); // Reiniciar total
+        orderCounter = 1; // Reiniciar contador de comandas
+        alert('Comandas reiniciadas con éxito.');
+      }
+    });
+
+  </script>
+
+  <footer>
+    <p>Desarrollado por <a href="#">Carlos Gómez</a></p>
+    <p>Copyright © 2025 Gestión de Comandas</p>
+  </footer>
+
+</body>
+
+</html>
