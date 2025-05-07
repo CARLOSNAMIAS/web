@@ -9,45 +9,63 @@
 </head>
 
 <style>
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #000000;
+    text-align: center;
+}
 
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #000000; /* Color de fondo opcional */
-        }
-        .center-div {
-            text-align: center;
-        }
-        .center-div img {
-        max-width: 70%;
-        height: auto;
-        margin-bottom: 20px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+.center-div {
+    max-width: 90%;
+    padding: 20px;
+}
+
+.center-div img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.center-div img:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 20px 10px rgba(11, 177, 11, 0.902);
+}
+
+.button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #079710;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.button:hover {
+    background-color: #df0202;
+}
+
+/* MEDIA QUERY PARA CELULARES */
+@media (max-width: 600px) {
+    .button {
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
     }
 
-    .center-div img:hover {
-        transform: scale(1.1); /* Aumenta el tamaño al pasar el mouse */
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); /* Agrega una sombra */
-        box-shadow: 0px 0px 20px 10px rgba(11, 177, 11, 0.902); /* Luz amarilla */
+    .center-div img {
+        max-width: 90%;
     }
-        .button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #079710; /* Color del botón */
-            color: white;
-            text-decoration: none;
-            border: none;
-            border-radius: 5px; /* Esquinas redondeadas */
-            font-size: 16px;
-        }
-        .button:hover {
-            background-color:#df0202; /* Color al pasar el cursor */
-        }
+}
+
     </style>
 </head>
 <body>
